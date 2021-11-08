@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = 'This is the default title' }) => (
   <div>
     <Head>
       <title>{title}</title>
