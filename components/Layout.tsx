@@ -15,7 +15,7 @@ const Layout = ({ children, title = 'This is the default title' }) => (
     <div className="text-center">
       {children}
     </div>
-    <footer>
+    <footer className="text-center">
       <hr />
       <span>مرحبا 👋</span>
     </footer>
