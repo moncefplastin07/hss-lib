@@ -15,10 +15,15 @@ const IndexPage = () => {
     const db = (document.querySelector('input[name="db"]:checked') as HTMLInputElement).value
     if (query.length > 2) {
       setShowSearchLoading(true)
-      setSearchResult(await searchResponse(query, db))
+      const searchResult = await searchResponse(query, db)
+      if (searchResult.length > 0) {
+        setInSearch(true)
+      } else {
+        setInSearch(false)
+      }
+      setSearchResult(searchResult)
       setShowSearchLoading(false)
     }
-    console.log(searchResult)
     
   }
   return (
@@ -26,7 +31,7 @@ const IndexPage = () => {
       <br/><br/>
       <strong className="xs: mb-5 bg-green-100 p-5 rounded-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
       <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full" onChange={searchHandle}/>
-      <p className="pt-3 pb-5">{searchResult.length ? `توجد ${searchResult.length} نتيجة بحث متطابقة` : "عذرا لا توجد نتائج بحث .. حاول البحث بكلمات مفتاحية اخرى"}{showSearchLoading ? "جاري البحث" : ""}</p>
+      <p className="pt-3 pb-5">{searchResult.length > 0 ? `توجد ${searchResult.length} نتيجة بحث متطابقة` : ((document.getElementById("q") as HTMLInputElement).value.length  > 2 ? "عذرا لا توجد نتائج بحث .. حاول البحث بكلمات مفتاحية اخرى" : "")}{showSearchLoading ? "جاري البحث" : ""}</p>
       <div className="grid grid-cols-3 w-3/6 m-auto">
       <span>
           علم مكتبات
@@ -41,8 +46,8 @@ const IndexPage = () => {
           <input type="radio" name="db" value="so" onChange={searchHandle}/>
         </span>
       </div>
-      <div className="m-auto text-right">
-        <table dir="rtl">
+     { searchResult.length > 0 ?  <div className="text-right">
+        <table dir="rtl" className="m-auto">
           <thead>
             <tr className='font-mono'>
               <th>المعرف</th>
@@ -68,7 +73,7 @@ const IndexPage = () => {
             }
           </tbody>
         </table>
-      </div>
+      </div> : ''}
     </Layout>
 )}
 
