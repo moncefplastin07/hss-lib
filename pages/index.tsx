@@ -11,8 +11,8 @@ const IndexPage = () => {
     return await (await fetch(`http://localhost:3001/?q=${query}&dbs=${db}`)).json()
   }
   const searchHandle = async (e) => {
-    const query = document.getElementById("q").value
-    const db = document.querySelector('input[name="db"]:checked').value
+    const query = (document.getElementById("q") as HTMLInputElement).value 
+    const db = (document.querySelector('input[name="db"]:checked') as HTMLInputElement).value
     if (query.length > 2) {
       setShowSearchLoading(true)
       setSearchResult(await searchResponse(query, db))
