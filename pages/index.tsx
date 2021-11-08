@@ -10,7 +10,7 @@ const IndexPage = () => {
     
     return await (await fetch(`https://hss-lib.herokuapp.com/?q=${query}&dbs=${db}`)).json()
   }
-  const searchHandle = async (e) => {
+  const searchHandle = async () => {
     const query = (document.getElementById("q") as HTMLInputElement).value 
     const db = (document.querySelector('input[name="db"]:checked') as HTMLInputElement).value
     if (query.length > 2) {
@@ -29,10 +29,10 @@ const IndexPage = () => {
   return (
     <Layout title="الفهرس المتاح على الخط - علوم انسانية واجتماعية - شتمة بسكرة">
       <br/><br/>
-      <strong className="xs: mb-5 bg-green-100 p-5 rounded-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
+      <strong className="mx-3 bg-green-100 py-5 px-3 rounded-md text-lg">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
       <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full" onChange={searchHandle}/>
       <p className="pt-3 pb-5">{searchResult.length > 0 ? `توجد ${searchResult.length} نتيجة بحث متطابقة` : ""}{showSearchLoading ? "جاري البحث" : ""}</p>
-      <div className="grid grid-cols-3 w-3/6 m-auto">
+      <div className="grid grid-cols-3 xs:grid-cols-2 gap-6 w-3/6 m-auto ">
       <span>
           علم مكتبات
           <input type="radio" name="db" value="li" onChange={searchHandle} />
@@ -40,6 +40,14 @@ const IndexPage = () => {
         <span>
           تاريخ
           <input type="radio" name="db" value="hs" onChange={searchHandle} />
+        </span>
+        <span>
+          اتصال
+          <input type="radio" name="db" value="co" onChange={searchHandle} />
+        </span>
+        <span>
+          ثقافة عامة
+          <input type="radio" name="db" value="th" onChange={searchHandle} />
         </span>
         <span>
           علم الاجتماع
