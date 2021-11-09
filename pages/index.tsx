@@ -53,6 +53,14 @@ const IndexPage = () => {
           علم الاجتماع
           <input type="radio" name="db" value="so" onChange={searchHandle}/>
         </span>
+        <span>
+          علم النفس
+          <input type="radio" name="db" value="pc" onChange={searchHandle}/>
+        </span>
+        <span>
+          لغات اجنبية (فرنسية فقط)
+          <input type="radio" name="db" value="fl" onChange={searchHandle}/>
+        </span>
       </div>
      { searchResult.length > 0 ?  <div className="text-right">
         <table dir="rtl" className="m-auto">
