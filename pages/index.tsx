@@ -3,35 +3,40 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 
 const IndexPage = () => {
-  const [inSearch, setInSearch] = useState(false)
-  const [showSearchLoading, setShowSearchLoading] = useState(false)
+  const [searchResultMessage, setSearchResultMessage] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const searchResponse = async (query: string, db = '') => {
     
-    return await (await fetch(`https://hss-lib.herokuapp.com/?q=${query}&dbs=${db}`)).json()
+    return await (await fetch(`http://localhost:3001/?q=${query}&dbs=${db}`)).json()
   }
   const searchHandle = async () => {
     const query = (document.getElementById("q") as HTMLInputElement).value 
     const db = (document.querySelector('input[name="db"]:checked') as HTMLInputElement).value
     if (query.length > 2) {
-      setShowSearchLoading(true)
+
       const searchResult = await searchResponse(query, db)
-      if (searchResult.length > 0) {
-        setInSearch(true)
+      setSearchResultMessage("جار البحث ..")
+     
+      if (searchResult.length < 1) {
+        setSearchResultMessage("لا توجد نتائج بحث مطابقة")
+
       } else {
-        setInSearch(false)
+        setSearchResultMessage(`توجد ${searchResult.length} نتيجة بحث متطابقة`)
+
       }
       setSearchResult(searchResult)
-      setShowSearchLoading(false)
+      
+    }else{
+      setSearchResultMessage('')
     }
     
   }
   return (
     <Layout title="الفهرس المتاح على الخط - علوم انسانية واجتماعية - شتمة بسكرة">
       <br/><br/>
-      <strong className="xs:text-sm mx-3 bg-green-100 py-5 px-3 rounded-md text-lg">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
+      <strong className="xs:text-sm mx-3 bg-green-100 py-5 px-7 rounded-md text-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
       <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full" onChange={searchHandle}/>
-      <p className="pt-3 pb-5">{searchResult.length > 0 ? `توجد ${searchResult.length} نتيجة بحث متطابقة` : ""}{showSearchLoading ? "جاري البحث" : ""}</p>
+      <p className="pt-3 pb-5">{ searchResultMessage }</p>
       <div className="grid grid-cols-3 xs:grid-cols-2 gap-6 w-3/6 m-auto ">
       <span>
           علم مكتبات
