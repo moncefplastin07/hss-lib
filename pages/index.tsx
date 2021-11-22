@@ -6,16 +6,15 @@ const IndexPage = () => {
   const [searchResultMessage, setSearchResultMessage] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const searchResponse = async (query: string, db = '') => {
-    
+    setSearchResultMessage("جار البحث ..")
     return await (await fetch(`https://hss-lib.herokuapp.com/?q=${query}&dbs=${db}`)).json()
   }
   const searchHandle = async () => {
     const query = (document.getElementById("q") as HTMLInputElement).value 
     const db = (document.querySelector('input[name="db"]:checked') as HTMLInputElement).value
     if (query.length > 2) {
-
-      const searchResult = await searchResponse(query, db)
-      setSearchResultMessage("جار البحث ..")
+      
+      const searchResult = await searchResponse(query, db)  
      
       if (searchResult.length < 1) {
         setSearchResultMessage("لا توجد نتائج بحث مطابقة")
