@@ -33,7 +33,7 @@ const IndexPage = () => {
   return (
     <Layout title="الفهرس المتاح على الخط - علوم انسانية واجتماعية - شتمة بسكرة">
       <br/><br/>
-      <strong className="xs:text-sm mx-3 bg-green-100 py-5 px-7 rounded-md text-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
+      <strong className="xs:text-sm bg-green-100 py-4 px-5 rounded-md text-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
       <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full" onChange={searchHandle}/>
       <p className="pt-3 pb-5">{ searchResultMessage }</p>
       <div className="grid grid-cols-3 xs:grid-cols-2 gap-6 w-3/6 m-auto ">
