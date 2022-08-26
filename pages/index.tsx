@@ -7,7 +7,7 @@ const IndexPage = () => {
   const [searchResult, setSearchResult] = useState([])
   const searchResponse = async (query: string, db = '') => {
     setSearchResultMessage("جار البحث ..")
-    return await (await fetch(`https://hss-lib.herokuapp.com/?q=${query}&dbs=${db}`)).json()
+    return await (await fetch(`https://moncefplastin07-hss.deno.dev/?q=${query}&dbs=${db}`)).json()
   }
   const searchHandle = async () => {
     const query = (document.getElementById("q") as HTMLInputElement).value 
