@@ -33,8 +33,10 @@ const IndexPage = () => {
   return (
     <Layout title="الفهرس المتاح على الخط - علوم انسانية واجتماعية - شتمة بسكرة">
       <br/><br/>
-      <strong className="xs:text-sm bg-green-100 py-4 px-5 rounded-md text-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث</strong><br/><br/>
-      <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full" onChange={searchHandle}/>
+      <h2 className='text-xl mt-10'>فهرس على الخط خاص بمحتوى مكتبة كلية العلوم الانسانية والاجتماعية بسكرة </h2>
+      <h3 className='text-lg mt-5 mb-10'>من طرف الطالب <strong>منصف قحة</strong>(ماستر علم مكتبات)</h3>
+      <span className="xs:text-sm bg-green-100 py-4 px-5 rounded-md text-md">يجب ان تكون عبارة البحث اكثر من حرفين ليبدئ البحث, يقوم هاذا الفهرس بالبحث في حقلي العنوان واسم الكاتب اظافة الى رقم التصنيف</span><br/><br/>
+      <input type="text" id="q" placeholder="ادخل عبارة البحث ثم اضغط Enter" className="px-4 py-3 text-right w-3/6 xs:w-full border border-gray-200 " onChange={searchHandle}/>
       <p className="pt-3 pb-5">{ searchResultMessage }</p>
       <div className="grid grid-cols-3 xs:grid-cols-2 gap-6 w-3/6 xs:w-full m-auto ">
       <span>
